@@ -20,6 +20,12 @@ return new class extends Migration
                 ->cascadeOnDelete();
 
             $table->date('tanggal_pinjam');
+            $table->date('tanggal_kembali');
+
+            $table->enum('status', [
+                'pinjam',
+                'kembali'
+            ]);
 
             $table->timestamps();
         });

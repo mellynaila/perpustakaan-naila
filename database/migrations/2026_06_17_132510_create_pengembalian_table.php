@@ -15,7 +15,9 @@ return new class extends Migration
                 ->constrained('peminjaman')
                 ->cascadeOnDelete();
 
-            $table->date('tanggal_kembali');
+            $table->date('tanggal_pengembalian');
+
+            $table->integer('denda')->default(0);
 
             $table->timestamps();
         });
