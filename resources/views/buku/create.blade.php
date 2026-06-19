@@ -15,9 +15,21 @@
 
             <br>
 
-            <label>Pengarang</label>
+            <label>Penulis</label>
 
-            <input type="text" name="pengarang" class="form-control">
+            <input type="text" name="penulis" class="form-control">
+
+            <br>
+
+            <label>Penerbit</label>
+
+            <input type="text" name="penerbit" class="form-control">
+
+            <br>
+
+            <label>Tahun Terbit</label>
+
+            <input type="text" name="tahun_terbit" class="form-control">
 
             <br>
 

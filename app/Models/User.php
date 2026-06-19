@@ -2,37 +2,40 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB; // <--- Taruh di sini
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use Notifiable;
 
-    protected $table = "users";
-
-    private static $key = "perpus";
-
-    public static function xorEncrypt($text)
+    // 1. Ambil semua user yang berstatus Admin
+    public static function getAdmins()
     {
-        $hasil = "";
-        $key = self::$key;
-
-        for ($i = 0; $i < strlen($text); $i++) {
-            $hasil .= chr(ord($text[$i]) ^ ord($key[$i % strlen($key)]));
-        }
-
-        return $hasil;
+        return DB::table('users')->where('role', 'admin')->get();
     }
 
-    public static function loginUser($email, $password)
+    // 2. Ambil semua user yang berstatus Anggota
+    public static function getAnggota()
     {
-        return DB::table('users')
-            ->where('email', $email)
-            ->where('password', $password)
-            ->first();
+        return DB::table('users')->where('role', 'anggota')->get();
+    }
+
+    // 3. Simpan data user baru (bisa untuk admin/anggota)
+    public static function insertUser($data)
+    {
+        // Pastikan password di-hash sebelum disimpan
+        if (isset($data['password'])) {
+            $data['password'] = bcrypt($data['password']);
+        }
+
+        return DB::table('users')->insert($data);
+    }
+
+    // 4. Hapus user berdasarkan ID
+    public static function deleteUser($id)
+    {
+        return DB::table('users')->where('id', $id)->delete();
     }
 }

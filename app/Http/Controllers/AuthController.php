@@ -3,38 +3,45 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
-use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+
     public function login()
     {
         return view('login');
     }
 
+
     public function proses(Request $request)
     {
-        $user = User::loginUser(
-            $request->email,
-            $request->password
-        );
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required'
+        ]);
 
-        if ($user) {
+        $credentials = $request->only('email', 'password');
 
-            Session::put('login', true);
-            Session::put('nama', $user->name);
+        if (Auth::attempt($credentials)) {
 
-            return redirect('/dashboard');
+            $request->session()->regenerate();
+
+            return redirect()->intended('/dashboard');
         }
 
-        return back()->with('error', 'Login gagal');
+        return back()->withErrors([
+            'email' => 'Email atau password salah'
+        ])->withInput();
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        Session::flush();
+        Auth::logout();
 
-        return redirect('/');
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/login');
     }
 }

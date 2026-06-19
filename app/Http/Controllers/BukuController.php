@@ -30,7 +30,9 @@ class BukuController extends Controller
     {
         Buku::insertData([
             'judul' => $request->judul,
-            'pengarang' => $request->pengarang,
+            'penulis' => $request->penulis,
+            'penerbit' => $request->penerbit,
+            'tahun_terbit' => $request->tahun_terbit,
             'stok' => $request->stok
         ]);
 
@@ -48,7 +50,9 @@ class BukuController extends Controller
     {
         Buku::updateData($id, [
             'judul' => $request->judul,
-            'pengarang' => $request->pengarang,
+            'penulis' => $request->penulis,
+            'penerbit' => $request->penerbit,
+            'tahun_terbit' => $request->tahun_terbit,
             'stok' => $request->stok
         ]);
 

@@ -13,8 +13,18 @@
             </tr>
 
             <tr>
-                <th>Pengarang</th>
-                <td>{{ $buku->pengarang }}</td>
+                <th>Penulis</th>
+                <td>{{ $buku->penulis }}</td>
+            </tr>
+
+            <tr>
+                <th>Penerbit</th>
+                <td>{{ $buku->penerbit }}</td>
+            </tr>
+
+            <tr>
+                <th>Tahun Terbit</th>
+                <td>{{ $buku->tahun_terbit }}</td>
             </tr>
 
             <tr>

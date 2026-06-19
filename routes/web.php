@@ -12,9 +12,10 @@ use App\Http\Controllers\LaporanController;
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'proses'])->name('login.process');
-Route::get('/logout', [AuthController::class, 'logout']);
+Route::post('/logout', [AuthController::class, 'logout']);
 
-Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware('auth');
 
 Route::get('/buku', [BukuController::class, 'index']);
 Route::get('/buku/show/{id}', [BukuController::class, 'show']);

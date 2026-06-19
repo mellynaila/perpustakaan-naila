@@ -14,7 +14,9 @@
             <tr>
                 <th>No</th>
                 <th>Judul Buku</th>
-                <th>Pengarang</th>
+                <th>Penulis</th>
+                <th>Penerbit</th>
+                <th>Tahun Terbit</th>
                 <th>Stok</th>
                 <th>Aksi</th>
             </tr>
@@ -24,7 +26,9 @@
 
                     <td>{{ $no + 1 }}</td>
                     <td>{{ $b->judul }}</td>
-                    <td>{{ $b->pengarang }}</td>
+                    <td>{{ $b->penulis }}</td>
+                    <td>{{ $b->penerbit }}</td>
+                    <td>{{ $b->tahun_terbit }}</td>
                     <td>{{ $b->stok }}</td>
 
                     <td>

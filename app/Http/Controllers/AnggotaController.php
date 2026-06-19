@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Anggota;
+use App\Models\User;
 
 class AnggotaController extends Controller
 {
     public function index()
     {
-        $anggota = Anggota::getAll();
+        $anggota = User::getAll();
 
         return view('anggota.index', compact('anggota'));
     }

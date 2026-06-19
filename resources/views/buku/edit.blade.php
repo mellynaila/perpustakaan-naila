@@ -15,9 +15,21 @@
 
             <br>
 
-            <label>Pengarang</label>
+            <label>Penulis</label>
 
-            <input type="text" name="pengarang" class="form-control" value="{{ $buku->pengarang }}">
+            <input type="text" name="penulis" class="form-control" value="{{ $buku->penulis }}">
+
+            <br>
+
+            <label>Penerbit</label>
+
+            <input type="text" name="penerbit" class="form-control" value="{{ $buku->penerbit }}">
+
+            <br>
+
+            <label>Tahun Terbit</label>
+
+            <input type="text" name="tahun_terbit" class="form-control" value="{{ $buku->tahun_terbit }}">
 
             <br>
 
